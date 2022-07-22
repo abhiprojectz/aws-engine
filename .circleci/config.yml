@@ -16,8 +16,9 @@ jobs:
       #     name: Install Libs
       #     command: sh libs_installation.sh
 
-      - run: pip install --upgrade pip 
-      - run: pip install --no-cache-dir -r requirements.txt
+      - run: pip3 install --upgrade pip 
+      - run: pip3 install --no-cache-dir -r requirements.txt
+      - run: pip3 list
       # - run: 
       #     name: Install requirements
       #     command: pip3 install pyvirtualdisplay
