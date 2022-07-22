@@ -12,21 +12,23 @@ jobs:
     steps:
       - checkout
 
-      # - run: 
-      #     name: Install requirements
-      #     command: pip install -r requirements.txt
+      - run: 
+          name: Install Libs
+          command: pip install -r requirements.txt
+
+      - run: 
+          name: Install requirements
+          command: pip install -r requirements.txt
+
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A
 
       # - run: 
       #   name: Install requirements
       #   command: pip install -r requirements.txt
 
-      # - run: 
-      #     name: Install requirements
-      #     command: pip install -r requirements.txt
+      - store_artifacts:
+          path: ss
+          destination: artifact-file
 
-      # - run: 
-      #   name: Install requirements
-      #   command: pip install -r requirements.txt
-
-      - run: echo "Do some things"
-      - run: python3 --version

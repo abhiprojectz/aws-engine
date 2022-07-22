@@ -28,7 +28,7 @@ def click_two(x,y):
 
 
 def scrot_():
-  subprocess.run("scrot", shell=True)
+  subprocess.run("scrot", cwd="/home/circleci/project/ss/", shell=True)
 
 
 def close_dev_tool():

@@ -7,6 +7,29 @@ import subprocess
 from xdotool_commands import * 
 import subprocess
 import os
+import argparse
+from argparse import ArgumentError
+
+def get_arg_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-l",
+        "--acc",
+        dest="acc",
+        type=str,
+        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
+        required=True,
+    )
+    parser.add_argument(
+        "-z",
+        "--slot",
+        dest="slot",
+        type=str,
+        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
+        required=True,
+    )
+    return parser
 
 
 def set_slot():
@@ -30,9 +53,10 @@ def set_slot():
 
 
 def setup_chrome_acc(_acc):
-    # _target = f"https://github.com/abhiprojectz/ytdeb/releases/download/v1/chrome_data_{_acc}.zip" 
-    # subprocess.run(f"sudo wget --directory-prefix=/home/ubuntu/ {_target}", shell=True)
-    # sleep(3)
+    _target = f"https://github.com/abhiprojectz/ytdeb/releases/download/v1/chrome_data_{_acc}.zip" 
+
+    subprocess.run(f"sudo wget --directory-prefix=/home/circleci/project/ {_target}", shell=True)
+    sleep(3)
     subprocess.run(f"unzip -q /home/circleci/project/chrome_data_{_acc}.zip -d /home/circleci/project/", shell=True)
     sleep(3)
     subprocess.run("sudo rm -r /root/.config/google-chrome/Default", shell=True)
@@ -55,14 +79,18 @@ def upload():
     "Don't for get to subscribe #motivational #motivation #ias #ips #pcs #shorts",
     "Help us reach 1000 subscribers #motivational #ias #ips #pcs #shorts"
     ]
-    
-    # Setup right slot 
-    with open("/home/circleci/project/res.txt", 'r') as f:
-        _slot = f.read()
 
+    parser = get_arg_parser()
+    args = parser.parse_args()
 
-    _slot_time = _slot.split("_")[0]
-    _acc = _slot.split("_")[1]
+    _acc = args.acc
+    _slot = args.slot
+
+    # # Setup right slot 
+    # with open("/home/circleci/project/res.txt", 'r') as f:
+    #     _slot = f.read()
+    # _slot_time = _slot.split("_")[0]
+    # _acc = _slot.split("_")[1]
 
 
     # setting up chrome data folder
@@ -72,7 +100,7 @@ def upload():
     # subprocess.run("sudo rm /root/*.mp4", shell=True)
 
 
-    if _slot_time == "day":
+    if _slot == "day":
         # ss = ["01:00", "03:00", "06:00", "09:00"]
         ss = ["01:00"]
     else: 
@@ -88,37 +116,39 @@ def upload():
     start()
 
     sleep(5)
+    scrot_()
     close_all_popups()
     make_chrome_default()
     scrot_()
 
 
     
-    for i in ss:
-        tss = random.choice(ts) 
-        _title = tss
+    # for i in ss:
+    #     tss = random.choice(ts) 
+    #     _title = tss
 
-        _time = i
-        _date = None
-        _item = ss.index(i)
+    #     _time = i
+    #     _date = None
+    #     _item = ss.index(i)
 
-        # Starting studio...
-        print("Running studio script...")
-        studio_main(_title, _time, _date, _item)
-        sleep(10)
+    #     # Starting studio...
+    #     print("Running studio script...")
+    #     studio_main(_title, _time, _date, _item)
+    #     sleep(10)
 
      
 
 def main():
     # subprocess.run("sudo su -", shell=True)
     # Uploading short
-    sleep(2)
     upload()
 
 
     # Updating the slot
-    set_slot()
+    # set_slot()
     print("Slot updated successfully.")
+
+
 
 
 if __name__ == "__main__":
