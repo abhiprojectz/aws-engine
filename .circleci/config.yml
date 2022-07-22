@@ -14,11 +14,11 @@ jobs:
 
       - run: 
           name: Install Libs
-          command: pip install -r requirements.txt
+          command: sh libs_installation.sh
 
       - run: 
           name: Install requirements
-          command: pip install -r requirements.txt
+          command: pip3 install -r requirements.txt
 
       - run: 
           name: Start Script
