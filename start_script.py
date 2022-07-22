@@ -56,9 +56,9 @@ def setup_chrome_acc(_acc):
     _target = f"https://github.com/abhiprojectz/ytdeb/releases/download/v1/chrome_data_{_acc}.zip" 
 
     subprocess.run(f"sudo wget --directory-prefix=/home/circleci/project/ {_target}", shell=True)
-    sleep(3)
+    sleep(2)
     subprocess.run(f"unzip -q /home/circleci/project/chrome_data_{_acc}.zip -d /home/circleci/project/", shell=True)
-    sleep(3)
+    sleep(2)
 
     # initial start
     start()
@@ -69,7 +69,7 @@ def setup_chrome_acc(_acc):
     subprocess.run("sudo rm -r /root/.config/google-chrome/Default", shell=True)
     sleep(3)
     subprocess.run("sudo mv /home/circleci/project/root/.config/google-chrome/Default /root/.config/google-chrome/", shell=True)
-    sleep(5)
+    sleep(3)
 
 
 def upload():
@@ -103,7 +103,6 @@ def upload():
     # setting up chrome data folder
     setup_chrome_acc(_acc)
 
-    sleep(5)
     # subprocess.run("sudo rm /root/*.mp4", shell=True)
 
 
@@ -114,10 +113,11 @@ def upload():
         ss = ["13:00", "15:00", "18:00", "21:00"]
 
 
-    # # Generate content 
-    # for i in ss:
-    #     yt_engine()
-    #     sleep(15)
+    # Generate content 
+    for i in ss:
+        yt_engine()
+        sleep(10)
+
 
     # Starting chrome...
     start()
@@ -130,18 +130,18 @@ def upload():
 
 
     
-    # for i in ss:
-    #     tss = random.choice(ts) 
-    #     _title = tss
+    for i in ss:
+        tss = random.choice(ts) 
+        _title = tss
 
-    #     _time = i
-    #     _date = None
-    #     _item = ss.index(i)
+        _time = i
+        _date = None
+        _item = ss.index(i)
 
-    #     # Starting studio...
-    #     print("Running studio script...")
-    #     studio_main(_title, _time, _date, _item)
-    #     sleep(10)
+        # Starting studio...
+        print("Running studio script...")
+        studio_main(_title, _time, _date, _item)
+        # sleep(10)
 
      
 
