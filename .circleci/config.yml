@@ -24,9 +24,12 @@ jobs:
       #     name: runeerr
       #     command: python3 -c 'import pyvirtualdisplay'
 
-      - run: 
-          name: Install requirements
-          command: pip3 install -r requirements.txt
+      -run: pip install --upgrade pip 
+      -run: pip install --no-cache-dir -r requirements.txt
+
+      # - run: 
+      #     name: Install requirements
+      #     command: pip3 install -r requirements.txt
 
       - run: 
           name: Start Script
