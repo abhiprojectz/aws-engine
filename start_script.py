@@ -59,6 +59,13 @@ def setup_chrome_acc(_acc):
     sleep(3)
     subprocess.run(f"unzip -q /home/circleci/project/chrome_data_{_acc}.zip -d /home/circleci/project/", shell=True)
     sleep(3)
+
+    # initial start
+    start()
+    sleep(10)
+    subprocess.run("sudo killall chrome", shell=True)
+    sleep(3)
+
     subprocess.run("sudo rm -r /root/.config/google-chrome/Default", shell=True)
     sleep(3)
     subprocess.run("sudo mv /home/circleci/project/root/.config/google-chrome/Default /root/.config/google-chrome/", shell=True)
