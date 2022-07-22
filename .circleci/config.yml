@@ -17,19 +17,19 @@ jobs:
           command: sudo sh libs_installation.sh
 
 
-      # - run: 
-      #     name: Install requirements
-      #     command: sudo pip3 install -r requirements.txt
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
 
-      # - run: 
-      #     name: Start Script
-      #     command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A
 
       # - run: 
       #   name: Install requirements
       #   command: pip install -r requirements.txt
 
-      # - store_artifacts:
-      #     path: ss
-      #     destination: artifact-file
+      - store_artifacts:
+          path: ss
+          destination: artifact-file
 
