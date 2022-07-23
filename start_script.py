@@ -84,6 +84,7 @@ def upload():
     "#inspiring #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc #satisfying #amazing",
     "Please subscribe the channel #motivation #shorts #ias #knowledge #upsc #satisfying #amazing",
     "Don't for get to subscribe #motivational #motivation #ias #ips #pcs #shorts",
+    "Most inspirational shorts ever #shorts #motivation",
     "Help us reach 1000 subscribers #motivational #ias #ips #pcs #shorts"
     ]
 
@@ -123,12 +124,10 @@ def upload():
     start()
 
     sleep(5)
-    scrot_()
+    # scrot_()
     close_all_popups()
     make_chrome_default()
-    scrot_()
-
-
+    # scrot_()
     
     for i in ss:
         tss = random.choice(ts) 
@@ -144,7 +143,6 @@ def upload():
         sleep(10)
 
      
-
 def main():
     # subprocess.run("sudo su -", shell=True)
     # Uploading short
@@ -152,9 +150,7 @@ def main():
 
 
     # Updating the slot
-    # set_slot()
-    print("Slot updated successfully.")
-
+    print("Process completed.")
 
 
 
