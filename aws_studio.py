@@ -82,33 +82,49 @@ def set_up_youtube():
 
 
 def set_up_upload(_item):
-  # Click on upload icon
-  click_one(1417,164 )
-  sleep(4)
+  # # Click on upload icon
+  # click_one(1417,164 )
+  # sleep(4)
 
-
-  # select files
-  click_one(765, 575)
-  sleep(4)
-
-  if _item == 0:
-    click_one(233, 90) #1
-  elif _item == 1:
-    click_one(233, 115) #2
-  elif _item == 2:
-    click_one(233, 126) #3
-  elif _item == 3:
-    click_one(233, 153) #4
-
+  # close popusps 1
+  click_one(1320 , 102) 
   sleep(3)
-  ## open home
-  click_one(20, 60)
-  sleep(4)
+  scrot_()
+  # close popusps 2
+  click_one(1481, 91)
+  sleep(3)
+  scrot_()
+  #create 
+  click_one(1402, 98) 
+  sleep(3)
+  scrot_()
+  #upload vedio
+  click_one(1384, 136)
+  sleep(2)
+  scrot_()
+
+  # # select files
+  # click_one(765, 575)
+  # sleep(4)
+
+  # if _item == 0:
+  #   click_one(233, 90) #1
+  # elif _item == 1:
+  #   click_one(233, 115) #2
+  # elif _item == 2:
+  #   click_one(233, 126) #3
+  # elif _item == 3:
+  #   click_one(233, 153) #4
+
+  # sleep(3)
+  # ## open home
+  # click_one(20, 60)
+  # sleep(4)
 
 
-  ## open btn
-  click_one(1100, 800)
-  sleep(4)
+  # ## open btn
+  # click_one(1100, 800)
+  # sleep(4)
 
 
 def set_title(res):
@@ -174,13 +190,6 @@ def studio_main(_title, _time, _date, _item):
   open_studio()
   # scrot_()
 
-  click_one(1320 , 102) 
-  sleep(3)
-  # scrot_()
-  click_one(1481, 91)
-  sleep(3)
-  scrot_()
-
   ## Time & date
   if not _title:
     _title = "Lorem ipsum..."
@@ -194,22 +203,22 @@ def studio_main(_title, _time, _date, _item):
   set_up_upload(_item)
   # scrot_()
   # print("Setting up title...")
-  set_title(_title)
+  # set_title(_title)
+  # # scrot_()
+
+  # # if _date:
+  # #   set_date(_date)
+
+  # # print("Setting up time..")
+  # set_time(_time)
+  # # scrot_()
+
+  # # print("Waiting for processing....")
+  # sleep(25)
+  # schedule()
+  # print("Short successfully uploaded.")
+  # sleep(30)
   # scrot_()
-
-  # if _date:
-  #   set_date(_date)
-
-  # print("Setting up time..")
-  set_time(_time)
-  # scrot_()
-
-  # print("Waiting for processing....")
-  sleep(25)
-  schedule()
-  print("Short successfully uploaded.")
-  sleep(30)
-  scrot_()
   
 
 
