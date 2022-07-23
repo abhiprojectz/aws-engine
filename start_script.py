@@ -115,31 +115,31 @@ def upload():
 
 
     # Generate content 
-    # for i in ss:
-    #     yt_engine()
-    #     sleep(10)
+    for i in ss:
+        yt_engine()
+        sleep(10)
 
 
     # Starting chrome...
     start()
 
     sleep(5)
-    scrot_()
+    # scrot_()
     close_all_popups()
     make_chrome_default()
     scrot_()
     
-    # for i in ss:
-    #     print(f"Uploading {ss.index(i) + 1} of shorts...")
-    #     tss = random.choice(ts) 
-    #     _title = tss
+    for i in ss:
+        print(f"Uploading {ss.index(i) + 1} of shorts...")
+        tss = random.choice(ts) 
+        _title = tss
 
-    #     _time = i
-    #     _date = None
-    #     _item = ss.index(i)
+        _time = i
+        _date = None
+        _item = ss.index(i)
 
-    #     studio_main(_title, _time, _date, _item)
-    #     sleep(10)
+        studio_main(_title, _time, _date, _item)
+        sleep(10)
      
 def main():
     # subprocess.run("sudo su -", shell=True)
