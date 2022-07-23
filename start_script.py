@@ -137,7 +137,7 @@ def upload():
     # scrot_()
     close_all_popups()
     make_chrome_default()
-    scrot_()
+    # scrot_()
     
     for i in ss:
         print(f"Uploading {ss.index(i) + 1} of shorts...")

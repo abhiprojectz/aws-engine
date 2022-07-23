@@ -174,7 +174,10 @@ def studio_main(_title, _time, _date, _item):
   open_studio()
   scrot_()
 
-  click_one(1320 , 102)
+  click_one(1320 , 102) 
+  sleep(5)
+  scrot_()
+  click_one(1481, 91)
   sleep(5)
   scrot_()
 
