@@ -174,6 +174,9 @@ def studio_main(_title, _time, _date, _item):
   open_studio()
   scrot_()
 
+  click_one(1302 , 102)
+  scrot_()
+
   ## Time & date
   if not _title:
     _title = "Lorem ipsum..."
@@ -184,25 +187,25 @@ def studio_main(_title, _time, _date, _item):
 #   if not _date:
 #     _date = "23 Jul 2022"
 
-  set_up_upload(_item)
-  scrot_()
-  print("Setting up title...")
-  set_title(_title)
-  scrot_()
+  # set_up_upload(_item)
+  # scrot_()
+  # print("Setting up title...")
+  # set_title(_title)
+  # scrot_()
 
-  if _date:
-    set_date(_date)
+  # if _date:
+  #   set_date(_date)
 
-  print("Setting up time..")
-  set_time(_time)
-  scrot_()
+  # print("Setting up time..")
+  # set_time(_time)
+  # scrot_()
 
-  print("Waiting for processing....")
-  sleep(25)
-  schedule()
-  print("Short successfully uploaded.")
-  sleep(30)
-  scrot_()
+  # print("Waiting for processing....")
+  # sleep(25)
+  # schedule()
+  # print("Short successfully uploaded.")
+  # sleep(30)
+  # scrot_()
   
 
 

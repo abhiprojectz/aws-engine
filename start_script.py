@@ -28,7 +28,16 @@ def get_arg_parser() -> argparse.ArgumentParser:
         type=str,
         help="A json file that contains the cookies required to sign into YouTube in the target browser.",
         required=True,
-    )
+    ) 
+    
+    parser.add_argument(
+        "-y",
+        "--target_url",
+        dest="target_url",
+        type=str,
+        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
+        required=True,
+    ) 
     return parser
 
 
@@ -52,8 +61,9 @@ def set_slot():
         f.write(_format)
 
 
-def setup_chrome_acc(_acc):
-    _target = f"https://github.com/abhiprojectz/ytdeb/releases/download/v1/chrome_data_{_acc}.zip" 
+def setup_chrome_acc(_acc, _lor):
+    # _lor = os.environ["target_url"]
+    _target = f"{_lor}{_acc}.zip" 
 
     subprocess.run(f"sudo wget --directory-prefix=/home/circleci/project/ {_target}", shell=True)
     sleep(2)
@@ -100,9 +110,9 @@ def upload():
     # _slot_time = _slot.split("_")[0]
     # _acc = _slot.split("_")[1]
 
-
+    _lor = args.target_url
     # setting up chrome data folder
-    setup_chrome_acc(_acc)
+    setup_chrome_acc(_acc, _lor)
 
     # subprocess.run("sudo rm /root/*.mp4", shell=True)
 
@@ -114,10 +124,10 @@ def upload():
         ss = ["13:00", "15:00", "18:00", "21:00"]
 
 
-    # Generate content 
-    for i in ss:
-        yt_engine()
-        sleep(10)
+    # # Generate content 
+    # for i in ss:
+    #     yt_engine()
+    #     sleep(10)
 
 
     # Starting chrome...
@@ -139,7 +149,7 @@ def upload():
         _item = ss.index(i)
 
         studio_main(_title, _time, _date, _item)
-        sleep(10)
+        # sleep(10)
      
 def main():
     # subprocess.run("sudo su -", shell=True)
