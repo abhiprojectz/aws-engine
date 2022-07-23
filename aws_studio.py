@@ -195,7 +195,7 @@ def studio_main(_title, _time, _date, _item):
 
   print("Setting up time..")
   set_time(_time)
-  scrot_()
+  # scrot_()
 
   print("Waiting for processing....")
   sleep(25)
