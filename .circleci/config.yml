@@ -1,8 +1,4 @@
 version: 2.1
-workflows:
-  main:
-    jobs:
-      - build
 jobs:
   build:
     machine:
@@ -66,7 +62,7 @@ workflows:
   UploadSixPm-workflow:
     triggers:
       - schedule:
-          cron: "47 4 * * *"
+          cron: "49 4 * * *"
 
     jobs:
       - UploadSixPm
