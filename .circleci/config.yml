@@ -28,7 +28,7 @@ jobs:
   # UploadSixAm:
   #   machine:
   #     image: ubuntu-2204:2022.04.2
-  #   resource_class: large
+  #   resource_class: medium
     
   #   steps:
   #     - checkout
@@ -52,7 +52,7 @@ jobs:
   # UploadSevenAm:
   #   machine:
   #     image: ubuntu-2204:2022.04.2
-  #   resource_class: large
+  #   resource_class: medium
     
   #   steps:
   #     - checkout
@@ -76,7 +76,7 @@ jobs:
   # UploadSixPm:
   #   machine:
   #     image: ubuntu-2204:2022.04.2
-  #   resource_class: large
+  #   resource_class: medium
     
   #   steps:
   #     - checkout
@@ -100,7 +100,7 @@ jobs:
   # UploadSevenPm:
   #   machine:
   #     image: ubuntu-2204:2022.04.2
-  #   resource_class: large
+  #   resource_class: medium
     
   #   steps:
   #     - checkout
@@ -124,7 +124,7 @@ jobs:
   # UploadNinePm:
   #   machine:
   #     image: ubuntu-2204:2022.04.2
-  #   resource_class: large
+  #   resource_class: medium
     
   #   steps:
   #     - checkout
@@ -148,7 +148,7 @@ jobs:
   # UploadTenPm:
   #   machine:
   #     image: ubuntu-2204:2022.04.2
-  #   resource_class: large
+  #   resource_class: medium
     
   #   steps:
   #     - checkout
