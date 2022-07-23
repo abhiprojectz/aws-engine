@@ -172,7 +172,7 @@ def open_studio():
 def studio_main(_title, _time, _date, _item):
   # Open studio
   open_studio()
-  scrot_()
+#   scrot_()
 
   ## Time & date
   if not _title:
@@ -185,23 +185,27 @@ def studio_main(_title, _time, _date, _item):
 #     _date = "23 Jul 2022"
 
   set_up_upload(_item)
-  scrot_()
+#   scrot_()
   print("Setting up title...")
   set_title(_title)
-  scrot_()
+#   scrot_()
+
   if _date:
     set_date(_date)
 
   print("Setting up time..")
   set_time(_time)
   scrot_()
-  sleep(60)
+
+  print("Waiting for processing....")
+  sleep(25)
   schedule()
   print("Short successfully uploaded.")
+  sleep(30)
   scrot_()
   
 
-  # -------------  Delete generation make newer
 
 
 # studio_main()
+
