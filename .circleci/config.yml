@@ -42,7 +42,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=B
 
       - store_artifacts:
           path: ss
@@ -180,7 +180,7 @@ workflows:
   UploadSixAm-workflow:
     triggers:
       - schedule:
-          cron: "0 6 * * *"
+          cron: "20 5 * * *"
           filters:
             branches:
               only:
