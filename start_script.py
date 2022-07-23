@@ -107,8 +107,8 @@ def upload():
 
 
     if _slot == "day":
-        # ss = ["01:00", "03:00", "06:00", "09:00"]
-        ss = ["01:00"]
+        ss = ["01:00", "03:00", "06:00", "09:00"]
+        # ss = ["01:00"]
     else: 
         ss = ["13:00", "15:00", "18:00", "21:00"]
 
@@ -141,7 +141,7 @@ def upload():
         # Starting studio...
         print("Running studio script...")
         studio_main(_title, _time, _date, _item)
-        # sleep(10)
+        sleep(10)
 
      
 
