@@ -62,7 +62,10 @@ workflows:
   UploadSixPm-workflow:
     triggers:
       - schedule:
-          cron: "49 4 * * *"
-
+          cron: "50 4 * * *"
+          filters:
+            branches:
+              only:
+                - master_yt
     jobs:
       - UploadSixPm
