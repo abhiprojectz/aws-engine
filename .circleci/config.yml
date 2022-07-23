@@ -25,6 +25,54 @@ jobs:
 
 
 
+  UploadSixAm:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    resource_class: large
+    
+    steps:
+      - checkout
+      - run: 
+          name: Install Libs
+          command: sudo sh libs_installation.sh
+
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
+
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A
+
+      - store_artifacts:
+          path: ss
+          destination: artifact-file
+
+
+  UploadSevenAm:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    resource_class: large
+    
+    steps:
+      - checkout
+      - run: 
+          name: Install Libs
+          command: sudo sh libs_installation.sh
+
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
+
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=A
+
+      - store_artifacts:
+          path: ss
+          destination: artifact-file
+
+
   UploadSixPm:
     machine:
       image: ubuntu-2204:2022.04.2
@@ -32,23 +80,93 @@ jobs:
     
     steps:
       - checkout
-      # - run: 
-      #     name: Install Libs
-      #     command: sudo sh libs_installation.sh
+      - run: 
+          name: Install Libs
+          command: sudo sh libs_installation.sh
+          
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
 
-      # - run: 
-      #     name: Install requirements
-      #     command: sudo pip3 install -r requirements.txt
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=B
 
-      # - run: 
-      #     name: Start Script
-      #     command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A
+      - store_artifacts:
+          path: ss
+          destination: artifact-file
 
-      # - store_artifacts:
-      #     path: ss
-      #     destination: artifact-file
-      - run: echo "Scheduled run....."
 
+  UploadSevenPm:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    resource_class: large
+    
+    steps:
+      - checkout
+      - run: 
+          name: Install Libs
+          command: sudo sh libs_installation.sh
+          
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
+
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=B
+
+      - store_artifacts:
+          path: ss
+          destination: artifact-file          
+
+
+  UploadNinePm:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    resource_class: large
+    
+    steps:
+      - checkout
+      - run: 
+          name: Install Libs
+          command: sudo sh libs_installation.sh
+          
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
+
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=C
+
+      - store_artifacts:
+          path: ss
+          destination: artifact-file
+
+
+  UploadTenPm:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    resource_class: large
+    
+    steps:
+      - checkout
+      - run: 
+          name: Install Libs
+          command: sudo sh libs_installation.sh
+          
+      - run: 
+          name: Install requirements
+          command: sudo pip3 install -r requirements.txt
+
+      - run: 
+          name: Start Script
+          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=C
+
+      - store_artifacts:
+          path: ss
+          destination: artifact-file          
 
 
 
@@ -59,13 +177,70 @@ workflows:
      - build
         
 
+  UploadSixAm-workflow:
+    triggers:
+      - schedule:
+          cron: "0 6 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - UploadSixAm
+
+  UploadSevenAm-workflow:
+    triggers:
+      - schedule:
+          cron: "0 7 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - UploadSevenAm
+
   UploadSixPm-workflow:
     triggers:
       - schedule:
-          cron: "58 4 * * *"
+          cron: "0 18 * * *"
           filters:
             branches:
               only:
                 - master
     jobs:
       - UploadSixPm
+
+  UploadSevenPm-workflow:
+    triggers:
+      - schedule:
+          cron: "0 19 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - UploadSevenPm
+
+  UploadNinePm-workflow:
+    triggers:
+      - schedule:
+          cron: "0 21 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - UploadNinePm
+
+  UploadTenPm-workflow:
+    triggers:
+      - schedule:
+          cron: "0 22 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - UploadTenPm
+
+

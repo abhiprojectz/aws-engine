@@ -130,6 +130,7 @@ def upload():
     # scrot_()
     
     for i in ss:
+        print(f"Uploading {ss.index(i) + 1} of shorts...")
         tss = random.choice(ts) 
         _title = tss
 
@@ -137,21 +138,16 @@ def upload():
         _date = None
         _item = ss.index(i)
 
-        # Starting studio...
-        print("Running studio script...")
         studio_main(_title, _time, _date, _item)
         sleep(10)
-
      
 def main():
     # subprocess.run("sudo su -", shell=True)
     # Uploading short
     upload()
 
-
     # Updating the slot
     print("Process completed.")
-
 
 
 if __name__ == "__main__":
