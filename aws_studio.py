@@ -201,10 +201,10 @@ def studio_main(_title, _time, _date, _item):
 #     _date = "23 Jul 2022"
 
   set_up_upload(_item)
-  scrot_()
+  # scrot_()
   print("Setting up title...")
   set_title(_title)
-  scrot_()
+  # scrot_()
 
   # if _date:
   #   set_date(_date)
@@ -214,7 +214,7 @@ def studio_main(_title, _time, _date, _item):
 
   print("Waiting for processing....")
   sleep(25)
-  scrot_()
+  # scrot_()
   schedule()
   print("Short successfully uploaded.")
   sleep(30)
