@@ -100,7 +100,7 @@ def set_up_upload(_item):
   # scrot_()
   #upload vedio
   click_one(1384, 136)
-  sleep(2)
+  sleep(4)
   # scrot_()
 
   # select files
@@ -116,7 +116,7 @@ def set_up_upload(_item):
   elif _item == 3:
     click_one(233, 153) #4
 
-  sleep(3)
+  sleep(4)
   ## open home
   click_one(20, 60)
   sleep(4)
