@@ -145,7 +145,7 @@ def upload():
         tss = random.choice(ts) 
         _title = tss
 
-        _time = ss.index(i)
+        _time = i
         _date = None
         _item = ss.index(i)
 

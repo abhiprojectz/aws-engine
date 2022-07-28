@@ -107,6 +107,10 @@ def set_up_upload(_item):
   click_one(765, 575)
   sleep(4)
 
+  ## open home
+  click_one(20, 60)
+  sleep(4)
+
   if _item == 0:
     click_one(233, 90) #1
   elif _item == 1:
@@ -116,9 +120,6 @@ def set_up_upload(_item):
   elif _item == 3:
     click_one(233, 153) #4
 
-  sleep(4)
-  ## open home
-  click_one(20, 60)
   sleep(4)
 
 
