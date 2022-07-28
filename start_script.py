@@ -119,15 +119,16 @@ def upload():
 
     if _slot == "day":
         # ss = ["01:00", "03:00", "06:00", "09:00"]
-        ss = ["05:00"]
+        ss = ["05:00", "07:00"]
+        # ss = ["05:00"]
     else: 
         ss = ["13:00", "15:00", "18:00", "21:00"]
 
 
-    # # Generate content 
+    # Generate content 
     for i in ss:
         yt_engine()
-        # sleep(10)
+        sleep(5)
 
 
     # Starting chrome...
@@ -144,7 +145,7 @@ def upload():
         tss = random.choice(ts) 
         _title = tss
 
-        _time = i
+        _time = ss.index(i)
         _date = None
         _item = ss.index(i)
 
