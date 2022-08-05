@@ -9,6 +9,7 @@ import subprocess
 import os
 import argparse
 from argparse import ArgumentError
+from titles_db import titles 
 
 def get_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
@@ -83,20 +84,21 @@ def setup_chrome_acc(_acc, _lor):
 
 
 def upload():
-    ts = ["#shorts #motivation #fun #meme #jee #knowledge #upsc #satisfying #amazing",
-    "#satisfying #amazing #ias #ips #pcs #jee #knowledge #upsc #neet",
-    "Subscribe & like #ias #ips #motivation #shorts #jee #knowledge #upsc #satisfying #amazing",
-    "#knowledge #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc",
-    "#motivational #satisfying #amazing #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc",
-    "#shorts #motivation #knowledge #ias #ips #pcs #knowledge #upsc #satisfying #amazing",
-    "Most motivational #shorts ever #motivation #iit #jee #ias #ips #pcs #upsc #satisfying #amazing",
-    "#motivational #memes #shorts #ias #ips #funny #jee #knowledge #upsc #satisfying #amazing",
-    "#inspiring #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc #satisfying #amazing",
-    "Please subscribe the channel #motivation #shorts #ias #knowledge #upsc #satisfying #amazing",
-    "Don't for get to subscribe #motivational #motivation #ias #ips #pcs #shorts",
-    "Most inspirational shorts ever #shorts #motivation",
-    "Help us reach 1000 subscribers #motivational #ias #ips #pcs #shorts"
-    ]
+    ts = titles
+    # ts = ["#shorts #motivation #fun #meme #jee #knowledge #upsc #satisfying #amazing",
+    # "#satisfying #amazing #ias #ips #pcs #jee #knowledge #upsc #neet",
+    # "Subscribe & like #ias #ips #motivation #shorts #jee #knowledge #upsc #satisfying #amazing",
+    # "#knowledge #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc",
+    # "#motivational #satisfying #amazing #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc",
+    # "#shorts #motivation #knowledge #ias #ips #pcs #knowledge #upsc #satisfying #amazing",
+    # "Most motivational #shorts ever #motivation #iit #jee #ias #ips #pcs #upsc #satisfying #amazing",
+    # "#motivational #memes #shorts #ias #ips #funny #jee #knowledge #upsc #satisfying #amazing",
+    # "#inspiring #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc #satisfying #amazing",
+    # "Please subscribe the channel #motivation #shorts #ias #knowledge #upsc #satisfying #amazing",
+    # "Don't for get to subscribe #motivational #motivation #ias #ips #pcs #shorts",
+    # "Most inspirational shorts ever #shorts #motivation",
+    # "Help us reach 1000 subscribers #motivational #ias #ips #pcs #shorts"
+    # ]
 
     parser = get_arg_parser()
     args = parser.parse_args()
