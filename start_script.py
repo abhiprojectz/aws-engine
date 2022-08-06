@@ -2,7 +2,6 @@ from aws_studio import *
 from start_chrome import start
 import random
 from time import sleep
-from ytdeb.main import yt_engine
 import subprocess
 from xdotool_commands import * 
 import subprocess
@@ -10,6 +9,11 @@ import os
 import argparse
 from argparse import ArgumentError
 from titles_db import titles 
+
+
+# from ytdeb.main import yt_engine
+from ytdeb_content.main import yt_engine
+
 
 def get_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
