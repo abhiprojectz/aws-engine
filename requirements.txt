@@ -1,5 +1,7 @@
-schedule
 moviepy
 Pillow
 python-xlib
 pyvirtualdisplay
+googletrans
+imageio-ffmpeg
+gTTS
