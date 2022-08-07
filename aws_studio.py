@@ -189,7 +189,7 @@ def open_studio():
 def studio_main(_title, _time, _date, _item):
   # Open studio
   open_studio()
-  scrot_()
+  # scrot_()
 
   ## Time & date
   if not _title:
@@ -215,11 +215,11 @@ def studio_main(_title, _time, _date, _item):
 
   print("Waiting for processing....")
   sleep(25)
-  scrot_()
+  # scrot_()
   schedule()
   print("Short successfully uploaded.")
   sleep(30)
-  scrot_()
+  # scrot_()
   
 
 
