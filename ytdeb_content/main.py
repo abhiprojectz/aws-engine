@@ -4,20 +4,13 @@ import random
 import string
 import requests
 import shutil
-# from texts_db import texts
-from PIL import Image
 import os, sys
 from datetime import datetime
 from PIL import Image
-import string
-# from moviepy.editor import *
 import time
-import subprocess
 from os.path import exists
 from time import sleep
-import shutil
 import subprocess 
-from time import sleep
 from moviepy.editor import VideoFileClip, AudioFileClip
 from moviepy.audio.fx.all import volumex
 from moviepy.editor import *
@@ -286,7 +279,7 @@ def update_fact_num():
 
 def move_content():    
     # move to /root folder
-    subprocess.run("sudo mv /home/circleci/project/ytdeb/outputs/*  /root/", shell=True)
+    subprocess.run("sudo mv /home/circleci/project/ytdeb_content/outputs/*  /root/", shell=True)
 
 
 def make_content_shorts():
