@@ -42,7 +42,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=B --target=$target_url
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A --target=$target_url
 
       - store_artifacts:
           path: ss
@@ -210,7 +210,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=D--target=$target_url
+          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=D --target=$target_url
 
       - store_artifacts:
           path: ss

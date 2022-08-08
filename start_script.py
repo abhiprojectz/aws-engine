@@ -149,7 +149,7 @@ def upload():
     for i in ss:
         print(f"Uploading {ss.index(i) + 1} of shorts...")
         tss = random.choice(ts) 
-        _title = tss
+        _title = tss + " #shorts #trending"
 
         _time = i
         _date = None
