@@ -1,7 +1,7 @@
 import random
 import requests 
 import shutil
-from .images_db_new import urls
+from images_db_new import urls
 from PIL import Image
 import os, sys
 from datetime import datetime
@@ -64,7 +64,7 @@ def deleteVid():
 
 def getImage():
 	pics = []
-	for _ in range(3):
+	for _ in range(7):
 		x = random.choice(urls)
 		pics.append(x)
 	return pics
@@ -168,6 +168,8 @@ def jj():
     print("runnnnn")
   
 
-if __name__ == "__main__":
-    #yt_engine()
-    jj()
+downloadImg()
+
+# if __name__ == "__main__":
+#     yt_engine()
+#     jj()

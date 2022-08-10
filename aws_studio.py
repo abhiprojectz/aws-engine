@@ -119,7 +119,14 @@ def set_up_upload(_item):
     click_one(233, 126) #3
   elif _item == 3:
     click_one(233, 153) #4
-
+  elif _item == 4:
+    click_one(233, 183) #5
+  elif _item == 5:
+    click_one(233, 213) #6
+  elif _item == 6:
+    click_one(233, 243) #7
+  elif _item == 7:
+    click_one(233, 273) #8
   sleep(4)
 
 
