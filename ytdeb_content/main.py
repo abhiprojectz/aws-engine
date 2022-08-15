@@ -15,8 +15,8 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 from moviepy.audio.fx.all import volumex
 from moviepy.editor import *
 
-from .content_db import items
-from .mixkit_urls import vids
+from content_db import items
+from mixkit_urls import vids
 
 
 # ========= DEFAULTS =========
@@ -209,11 +209,12 @@ def generateVedio(_audio, is_short):
     _audio_path = _audio
     _bg_music_path = get_bg_music()
     _final_audio_path = os.path.join(dir_path, id_generator() + '.mp3') 
-
+    _subs_path = os.path.join(dir_path, "subs.mp4") 
+    _like_subs_path = os.path.join(dir_path, "like_subs.wav") 
 
     destination_dir = os.path.join(dir_path, "outputs")
     target = os.path.join(destination_dir, f"{id_generator()}.mp4")
-    
+
 
     voice_audio = AudioFileClip(_audio_path)
     bg_music = AudioFileClip(_bg_music_path)
@@ -223,13 +224,15 @@ def generateVedio(_audio, is_short):
 
     # audioclip = AudioFileClip(music).set_duration(15)
     final_audio = CompositeAudioClip([voice_audio, new_bg_music])
-    final_audio.write_audiofile(_final_audio_path, fps=new_bg_music.fps)
+    final_audio2 = concatenate_audioclips([final_audio, AudioFileClip(_like_subs_path)])
+    final_audio2.write_audiofile(_final_audio_path, fps=new_bg_music.fps)
 
+    
     
     # Get resized vids 
     vids_list = get_final_vids()
     if is_short:
-      avg_dur = voice_audio.duration / len(vids_list)
+      avg_dur = (voice_audio.duration + 4) / len(vids_list)
       clips = [VideoFileClip(m).set_duration(int(avg_dur)).crossfadein(2.0)
               for m in vids_list]
     else:
@@ -238,10 +241,17 @@ def generateVedio(_audio, is_short):
 
     audio_clip = AudioFileClip(_final_audio_path)
     concat_clip = concatenate_videoclips(clips, method="compose").set_audio(audio_clip)
+
+    # Applying green screen subsribe btn
+    overlay_clip = VideoFileClip(_subs_path) 
+    masked_clip = vfx.mask_color(overlay_clip, color=[0,255,0], thr=190, s=5) 
+    masked_clip = masked_clip.resize(0.3).set_position(('center', 'top'))
+    final_video = CompositeVideoClip([concat_clip, masked_clip])
+
+
     # concat_clip.write_videofile(target, fps=fps, codec="mpeg4")
-    concat_clip.write_videofile(target, fps=fps)
+    final_video.write_videofile(target, fps=fps, threads = 20)
     deleteResized()
-    # deleteResized()
     # deleteResized()
     print('Vid successfully generated.')
 
