@@ -124,17 +124,17 @@ def upload():
 
 
     if _slot == "day":
-        ss = ["01:00", "03:00", "06:00", "09:00", "07:00", "08:00"]
+        # ss = ["01:00", "03:00", "06:00", "09:00", "07:00", "08:00"]
         # ss = ["05:00", "07:00"]
-        # ss = ["05:00"]
+        ss = ["05:00"]
     else: 
         ss = ["13:00", "15:00", "18:00", "21:00", "19:00", "20:00", "17:00"]
 
 
     # Generate content 
-    for i in ss:
-        yt_engine()
-        sleep(5)
+    # for i in ss:
+    #     yt_engine()
+    #     sleep(5)
 
 
     # Starting chrome...
@@ -142,8 +142,8 @@ def upload():
 
     sleep(5)
     # scrot_()
-    close_all_popups()
-    make_chrome_default()
+    # close_all_popups()
+    # make_chrome_default()
     # scrot_()
     
     for i in ss:
