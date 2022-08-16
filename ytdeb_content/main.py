@@ -250,7 +250,7 @@ def generateVedio(_audio, is_short):
 
 
     # concat_clip.write_videofile(target, fps=fps, codec="mpeg4")
-    final_video.write_videofile(target, fps=fps, threads = 20)
+    final_video.write_videofile(target, fps=fps, threads = 8, logger=None)
     deleteResized()
     # deleteResized()
     print('Vid successfully generated.')
