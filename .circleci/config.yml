@@ -16,7 +16,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=C --target_url=$target_url
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=E --target_url=$target_url
 
       - store_artifacts:
           path: ss
