@@ -209,7 +209,7 @@ def generateVedio(_audio, is_short):
     _audio_path = _audio
     _bg_music_path = get_bg_music()
     _final_audio_path = os.path.join(dir_path, id_generator() + '.mp3') 
-    _subs_path = os.path.join(dir_path, "subs.mp4") 
+    _subs_path = os.path.join(dir_path, "subs_png.png") 
     _like_subs_path = os.path.join(dir_path, "like_subs.wav") 
 
     destination_dir = os.path.join(dir_path, "outputs")
@@ -219,15 +219,14 @@ def generateVedio(_audio, is_short):
     voice_audio = AudioFileClip(_audio_path)
     bg_music = AudioFileClip(_bg_music_path)
     bg_music = bg_music.fx(volumex, 0.3)
-    new_bg_music = bg_music.subclip(0, voice_audio.duration)
+    new_bg_music = bg_music.subclip(0, (voice_audio.duration + 4))
 
 
     # audioclip = AudioFileClip(music).set_duration(15)
-    final_audio = CompositeAudioClip([voice_audio, new_bg_music])
-    final_audio2 = concatenate_audioclips([final_audio, AudioFileClip(_like_subs_path)])
+    final_audio = concatenate_audioclips([voice_audio, AudioFileClip(_like_subs_path)])
+    final_audio2 = CompositeAudioClip([final_audio, new_bg_music])
     final_audio2.write_audiofile(_final_audio_path, fps=new_bg_music.fps)
 
-    
     
     # Get resized vids 
     vids_list = get_final_vids()
@@ -243,9 +242,9 @@ def generateVedio(_audio, is_short):
     concat_clip = concatenate_videoclips(clips, method="compose").set_audio(audio_clip)
 
     # Applying green screen subsribe btn
-    overlay_clip = VideoFileClip(_subs_path) 
-    masked_clip = vfx.mask_color(overlay_clip, color=[0,255,0], thr=190, s=5) 
-    masked_clip = masked_clip.resize(0.3).set_position(('center', 'top'))
+    overlay_clip = ImageClip(_subs_path) 
+    # masked_clip = vfx.mask_color(overlay_clip, color=[0,255,0], thr=190, s=5) 
+    masked_clip = overlay_clip.resize(0.3).set_position(('center', 'top')).set_duration(voice_audio.duration + 4)
     final_video = CompositeVideoClip([concat_clip, masked_clip])
 
 
@@ -327,3 +326,5 @@ def yt_engine():
     make_content_shorts()
     move_content()
     print("Short generated.") 
+
+
