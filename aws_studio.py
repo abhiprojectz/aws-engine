@@ -196,36 +196,36 @@ def open_studio():
 def studio_main(_title, _time, _date, _item):
   # Open studio
   open_studio()
-  scrot_()
+  # scrot_()
 
-#   ## Time & date
-#   if not _title:
-#     _title = "Lorem ipsum..."
+  ## Time & date
+  if not _title:
+    _title = "Lorem ipsum..."
 
-#   if not _time: 
-#     _time = "06:00"
+  if not _time: 
+    _time = "06:00"
   
-# #   if not _date:
-# #     _date = "23 Jul 2022"
+#   if not _date:
+#     _date = "23 Jul 2022"
 
-#   set_up_upload(_item)
-#   # scrot_()
-#   print("Setting up title...")
-#   set_title(_title)
-#   # scrot_()
+  set_up_upload(_item)
+  # scrot_()
+  print("Setting up title...")
+  set_title(_title)
+  # scrot_()
 
-#   # if _date:
-#   #   set_date(_date)
+  # if _date:
+  #   set_date(_date)
 
-#   print("Setting up time..")
-#   set_time(_time)
+  print("Setting up time..")
+  set_time(_time)
 
-#   print("Waiting for processing....")
-#   sleep(25)
-#   # scrot_()
-#   schedule()
-#   print("Short successfully uploaded.")
-#   sleep(30)
+  print("Waiting for processing....")
+  sleep(25)
+  # scrot_()
+  schedule()
+  print("Short successfully uploaded.")
+  sleep(30)
   # scrot_()
   
 
