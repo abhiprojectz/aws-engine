@@ -15,8 +15,8 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 from moviepy.audio.fx.all import volumex
 from moviepy.editor import *
 
-from content_db import items
-from mixkit_urls import vids
+from .content_db import items
+from .mixkit_urls import vids
 
 
 # ========= DEFAULTS =========
