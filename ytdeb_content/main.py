@@ -281,7 +281,7 @@ def generateVedio(_audio, is_short, is_riddle, is_motivation, _msg):
       vids_list = get_final_riddle_vids()
 
 
-    if is_short:
+    if is_short or is_riddle or is_motivation:
       avg_dur = (_total_duration) / len(vids_list)
       clips = [VideoFileClip(m).set_duration(int(avg_dur)).crossfadein(2.0)
               for m in vids_list]
