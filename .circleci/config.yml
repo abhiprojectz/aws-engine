@@ -6,21 +6,21 @@ jobs:
     resource_class: medium
     steps:
       - checkout
-      - run: 
-          name: Install Libs
-          command: sudo sh libs_installation.sh
+      # - run: 
+      #     name: Install Libs
+      #     command: sudo sh libs_installation.sh
 
-      - run: 
-          name: Install requirements
-          command: sudo pip3 install -r requirements.txt
+      # - run: 
+      #     name: Install requirements
+      #     command: sudo pip3 install -r requirements.txt
 
-      - run: 
-          name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=F --target_url=$target_url --type_content=shorts
+      # - run: 
+      #     name: Start Script
+      #     command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=F --target_url=$target_url --type_content=shorts
 
-      - store_artifacts:
-          path: ss
-          destination: artifact-file
+      # - store_artifacts:
+      #     path: ss
+      #     destination: artifact-file
       - run: echo "Build initialized."
 
 
@@ -42,7 +42,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A --target=$target_url --type_content=riddle
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=A --target=$target_url --type_content=shorts
 
       - store_artifacts:
           path: ss
@@ -66,7 +66,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=A --target=$target_url --type_content=riddle
+          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=A --target=$target_url --type_content=shorts
 
       - store_artifacts:
           path: ss
@@ -186,7 +186,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=F --target=$target_url --type_content=riddle
+          command: sudo python3 /home/circleci/project/start_script.py --slot=day --acc=F --target=$target_url --type_content=shorts
 
       - store_artifacts:
           path: ss
@@ -210,7 +210,7 @@ jobs:
 
       - run: 
           name: Start Script
-          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=F --target=$target_url --type_content=riddle
+          command: sudo python3 /home/circleci/project/start_script.py --slot=night --acc=F --target=$target_url --type_content=shorts
 
       - store_artifacts:
           path: ss

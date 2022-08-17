@@ -116,9 +116,7 @@ def get_final_vids():
     _downloads_path = os.path.join(dir_path, "downloaded")
 
     for file in os.listdir(_downloads_path):
-        print(file)
         if file.endswith(".mp4"):
-            print("hsyshs", file)
             # tp = os.path.join(fz, file)
             tp = _downloads_path + "/" + file
             files.append(tp)
@@ -276,7 +274,7 @@ def generateVedio(_audio, is_short, is_riddle, is_motivation, _msg):
     
     # Get resized vids 
     vids_list = get_final_vids()
-    print(vids_list)
+    # print(vids_list)
 
 
     if is_short or is_riddle or is_motivation:
