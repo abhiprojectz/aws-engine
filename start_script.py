@@ -143,6 +143,16 @@ def upload():
         ss = ["13:00", "15:00", "18:00", "21:00", "19:00", "20:00", "17:00"]
 
 
+    # Imagemagick fix
+    with open(r'/etc/ImageMagick-6/policy.xml', 'r') as file:
+        data = file.read()
+        data = data.replace('<policy domain="path" rights="none" pattern="@*" />', "")
+  
+    with open(r'/etc/ImageMagick-6/policy.xml', 'w') as file:
+        file.write(data)
+    print("Fixed imagemagick")
+
+
     # Generate content 
     for i in ss:
         yt_engine(_type_content)
