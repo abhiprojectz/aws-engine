@@ -113,10 +113,12 @@ def resizer_vid(x):
 
 def get_final_vids():
     files = []
-    _downloads_path = os.path.join(dir_path, "downloaded/")
+    _downloads_path = os.path.join(dir_path, "downloaded")
 
     for file in os.listdir(_downloads_path):
+        print(file)
         if file.endswith(".mp4"):
+            print("hsyshs", file)
             # tp = os.path.join(fz, file)
             tp = _downloads_path + "/" + file
             files.append(tp)
