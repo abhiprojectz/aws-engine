@@ -113,7 +113,7 @@ def resizer_vid(x):
 
 def get_final_vids():
     files = []
-    _downloads_path = os.path.join(dir_path, "resized/")
+    _downloads_path = os.path.join(dir_path, "downloaded/")
 
     for file in os.listdir(_downloads_path):
         if file.endswith(".mp4"):
@@ -184,13 +184,13 @@ def download_riddle(x):
 def do_download(_audio, is_short, is_riddle, is_motivation):
     f_lens = []
 
-    if is_short:
-      for i in range(2):
-          j = random.choice(vids)
-          raw = f"https://assets.mixkit.co/videos/download/mixkit-{j.split('/')[2]}-medium.mp4"
-          x_raw = downloadVids(raw)
-          resizer_shorts(x_raw)
-    elif is_riddle:
+    if is_short or is_riddle:
+      # for i in range(2):
+      #     j = random.choice(vids)
+      #     raw = f"https://assets.mixkit.co/videos/download/mixkit-{j.split('/')[2]}-medium.mp4"
+      #     x_raw = downloadVids(raw)
+      #     resizer_shorts(x_raw)
+    # elif is_riddle:
       for i in range(2):
           j = random.choice(pexels_id)
           raw = f"https://www.pexels.com/video/{j}/download/?h=1280&w=720"
@@ -273,12 +273,8 @@ def generateVedio(_audio, is_short, is_riddle, is_motivation, _msg):
 
     
     # Get resized vids 
-    if is_short:
-      vids_list = get_final_vids()
-    elif is_riddle:
-      vids_list = get_final_riddle_vids()
-    elif is_motivation:
-      vids_list = get_final_riddle_vids()
+    vids_list = get_final_vids()
+    print(vids_list)
 
 
     if is_short or is_riddle or is_motivation:
