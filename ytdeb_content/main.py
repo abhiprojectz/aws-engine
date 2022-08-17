@@ -178,9 +178,9 @@ def trim_vid(x):
     return _temp_path +  f_name
 
 
-def download_riddle(x):
-  downloads_dir = os.path.join(dir_path, "downloaded/")
-  subprocess.call(f"sudo curl -O -J -L {x}", shell=True, cwd=downloads_dir)
+# def download_riddle(x):
+#   downloads_dir = os.path.join(dir_path, "downloaded/")
+#   subprocess.call(f"sudo curl -O -J -L {x}", shell=True, cwd=downloads_dir)
 
 
 def do_download(_audio, is_short, is_riddle, is_motivation):
@@ -196,7 +196,7 @@ def do_download(_audio, is_short, is_riddle, is_motivation):
       for i in range(2):
           j = random.choice(pexels_id)
           raw = f"https://www.pexels.com/video/{j}/download/?h=1280&w=720"
-          x_raw = download_riddle(raw)
+          x_raw = downloadVids(raw)
 
     elif is_motivation:
       for i in range(2):
