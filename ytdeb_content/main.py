@@ -179,8 +179,8 @@ def trim_vid(x):
 
 
 def download_riddle(x):
-  downloads_dir = os.path.join(dir_path, "downloaded")
-  subprocess.call(f"curl -O -J -L {x}", shell=True, cwd=downloads_dir)
+  downloads_dir = os.path.join(dir_path, "downloaded/")
+  subprocess.call(f"sudo curl -O -J -L {x}", shell=True, cwd=downloads_dir)
 
 
 def do_download(_audio, is_short, is_riddle, is_motivation):
