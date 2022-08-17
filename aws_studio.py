@@ -226,7 +226,7 @@ def studio_main(_title, _time, _date, _item):
   schedule()
   print("Short successfully uploaded.")
   sleep(30)
-  # scrot_()
+  scrot_()
   
 
 
