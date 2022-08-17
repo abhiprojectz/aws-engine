@@ -45,6 +45,15 @@ def get_arg_parser() -> argparse.ArgumentParser:
         help="A json file that contains the cookies required to sign into YouTube in the target browser.",
         required=True,
     ) 
+
+    parser.add_argument(
+        "-a",
+        "--type_content",
+        dest="type_content",
+        type=str,
+        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
+        required=True,
+    ) 
     return parser
 
 
@@ -111,6 +120,7 @@ def upload():
 
     _acc = args.acc
     _slot = args.slot
+    _type_content = args.type_content
 
     # # Setup right slot 
     # with open("/home/circleci/project/res.txt", 'r') as f:

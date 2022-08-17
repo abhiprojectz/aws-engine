@@ -14,10 +14,13 @@ import subprocess
 from moviepy.editor import VideoFileClip, AudioFileClip
 from moviepy.audio.fx.all import volumex
 from moviepy.editor import *
+import textwrap
 
 from .content_db import items
 from .mixkit_urls import vids
 
+from .riddle_db import items_riddle
+from .pexels_db import pexels_id
 
 # ========= DEFAULTS =========
 # __file__ = '/content/djhdd.py'
@@ -63,6 +66,14 @@ def deleteResized():
         except OSError:
             os.remove(path)
 
+def deletedownloads():
+    dir = os.path.join(dir_path, "downloaded")
+    for files in os.listdir(dir):
+        path = os.path.join(dir, files)
+        try:
+            shutil.rmtree(path)
+        except OSError:
+            os.remove(path)
 
 def resizer_shorts(x):
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -112,6 +123,19 @@ def get_final_vids():
             # print(os.path.join(file))
     return files
 
+def get_final_riddle_vids():
+    files = []
+    _downloads_path = os.path.join(dir_path, "downloaded/")
+
+    for file in os.listdir(_downloads_path):
+        if file.endswith(".mp4"):
+            # tp = os.path.join(fz, file)
+            tp = _downloads_path + "/" + file
+            files.append(tp)
+            # print(os.path.join(file))
+    return files
+
+
 def downloadVids(x):
     # _vid = ["https://assets.mixkit.co/videos/download/mixkit-northern-lights-of-blue-and-green-colors-in-the-night-4038.mp4"]
 
@@ -152,7 +176,12 @@ def trim_vid(x):
     return _temp_path +  f_name
 
 
-def do_download(_audio, is_short):
+def download_riddle(x):
+  downloads_dir = os.path.join(dir_path, "downloaded")
+  subprocess.call(f"curl -O -J -L {x}", shell=True, cwd=downloads_dir)
+
+
+def do_download(_audio, is_short, is_riddle, is_motivation):
     f_lens = []
 
     if is_short:
@@ -161,7 +190,19 @@ def do_download(_audio, is_short):
           raw = f"https://assets.mixkit.co/videos/download/mixkit-{j.split('/')[2]}-medium.mp4"
           x_raw = downloadVids(raw)
           resizer_shorts(x_raw)
-      
+    elif is_riddle:
+      for i in range(2):
+          j = random.choice(pexels_id)
+          raw = f"https://www.pexels.com/video/{j}/download/?h=1280&w=720"
+          x_raw = download_riddle(raw)
+
+    elif is_motivation:
+      for i in range(2):
+          j = random.choice(items_riddle)
+          raw = f"https://assets.mixkit.co/videos/download/mixkit-{j.split('/')[2]}-medium.mp4"
+          x_raw = downloadVids(raw)
+          resizer_shorts(x_raw)
+
     else:
       while True:
         if sum(f_lens) >= _audio:
@@ -205,7 +246,7 @@ def get_bg_music():
     return f
 
 
-def generateVedio(_audio, is_short):
+def generateVedio(_audio, is_short, is_riddle, is_motivation, _msg):
     _audio_path = _audio
     _bg_music_path = get_bg_music()
     _final_audio_path = os.path.join(dir_path, id_generator() + '.mp3') 
@@ -215,11 +256,14 @@ def generateVedio(_audio, is_short):
     destination_dir = os.path.join(dir_path, "outputs")
     target = os.path.join(destination_dir, f"{id_generator()}.mp4")
 
-
+    
     voice_audio = AudioFileClip(_audio_path)
+    _total_duration = voice_audio.duration + 4
+
+
     bg_music = AudioFileClip(_bg_music_path)
     bg_music = bg_music.fx(volumex, 0.3)
-    new_bg_music = bg_music.subclip(0, (voice_audio.duration + 4))
+    new_bg_music = bg_music.subclip(0, (_total_duration))
 
 
     # audioclip = AudioFileClip(music).set_duration(15)
@@ -229,9 +273,16 @@ def generateVedio(_audio, is_short):
 
     
     # Get resized vids 
-    vids_list = get_final_vids()
     if is_short:
-      avg_dur = (voice_audio.duration + 4) / len(vids_list)
+      vids_list = get_final_vids()
+    elif is_riddle:
+      vids_list = get_final_riddle_vids()
+    elif is_motivation:
+      vids_list = get_final_riddle_vids()
+
+
+    if is_short:
+      avg_dur = (_total_duration) / len(vids_list)
       clips = [VideoFileClip(m).set_duration(int(avg_dur)).crossfadein(2.0)
               for m in vids_list]
     else:
@@ -241,16 +292,32 @@ def generateVedio(_audio, is_short):
     audio_clip = AudioFileClip(_final_audio_path)
     concat_clip = concatenate_videoclips(clips, method="compose").set_audio(audio_clip)
 
-    # Applying green screen subsribe btn
-    overlay_clip = ImageClip(_subs_path) 
-    # masked_clip = vfx.mask_color(overlay_clip, color=[0,255,0], thr=190, s=5) 
-    masked_clip = overlay_clip.resize(0.3).set_position(('center', 'top')).set_duration(voice_audio.duration + 4)
-    final_video = CompositeVideoClip([concat_clip, masked_clip])
+
+
+    if is_riddle:
+      txt1 = TextClip("Comment Your Answer!", font="Amiri", stroke_width=3, stroke_color='black', fontsize = 50, color='white').set_pos(('center', 50)).set_duration(_total_duration) 
+
+      x = textwrap.fill(_msg, 25)
+      txt2 = TextClip(x, fontsize = 43, stroke_width=3, stroke_color='black', font='Mangal-bold', color = 'white').set_pos('center').set_duration(_total_duration) 
+
+      txt3 = TextClip("Riddle", stroke_width=10, fontsize = 52, color = 'white').set_pos(('center', 'bottom')).set_duration(_total_duration) 
+      overlay_clip = ImageClip(_subs_path) 
+      masked_clip = overlay_clip.resize(0.9).set_position(('center', 'top')).set_duration(_total_duration)
+
+      final_video = CompositeVideoClip([concat_clip, txt1, txt2, txt3, masked_clip]) 
+
+    else:
+      # Applying green screen subsribe btn
+      overlay_clip = ImageClip(_subs_path) 
+      # masked_clip = vfx.mask_color(overlay_clip, color=[0,255,0], thr=190, s=5) 
+      masked_clip = overlay_clip.set_position(('center', 'top')).set_duration(_total_duration)
+      final_video = CompositeVideoClip([concat_clip, masked_clip])
 
 
     # concat_clip.write_videofile(target, fps=fps, codec="mpeg4")
     final_video.write_videofile(target, fps=fps, threads = 8, logger=None)
     deleteResized()
+    deletedownloads()
     # deleteResized()
     print('Vid successfully generated.')
 
@@ -291,40 +358,43 @@ def move_content():
     subprocess.run("sudo mv /home/circleci/project/ytdeb_content/outputs/*  /root/", shell=True)
 
 
-def make_content_shorts():
-    fact = random.choice(items)
-    # tex_res = translate_text(fact)
-    
-    _audio = generate_speech(fact)
-    _audio_duration = AudioFileClip(_audio).duration
-    do_download(_audio_duration, is_short=True)
-    generateVedio(_audio, is_short=True)
-
-
 def make_vid():
     fact = random.choice(items)
     tex_res = translate_text(fact)
     
     _audio = generate_speech(tex_res)
     _audio_duration = AudioFileClip(_audio).duration
-    do_download(_audio_duration, is_short=False)
+    do_download(_audio_duration, is_short=False, is_riddle=False, is_motivation=False)
     generateVedio(_audio, is_short=False)
 
 
-def make_vid_from_text(x, is_short):
-    # fact = random.choice(items)    
-    # download_images(keywords)
-    # tex_res = translate_text(x)
+def make_content_shorts():
+    fact = random.choice(items)
+    # tex_res = translate_text(fact)
     
-    _audio = generate_speech(x)
+    _audio = generate_speech(fact)
     _audio_duration = AudioFileClip(_audio).duration
-    do_download(_audio_duration, is_short)
-    generateVedio(_audio, is_short)
+    do_download(_audio_duration, is_short=True, is_riddle=False, is_motivation=False)
+    generateVedio(_audio, is_short=True, is_riddle=False, is_motivation=False, _msg=None)
 
 
-def yt_engine():
-    make_content_shorts()
-    move_content()
-    print("Short generated.") 
+def make_content_riddle():
+    fact = random.choice(items_riddle)
+    x_fact = translate_text(fact)
 
+    _audio = generate_speech(x_fact)
+    _audio_duration = AudioFileClip(_audio).duration
+    do_download(_audio_duration, is_short=False, is_riddle=True, is_motivation=False)
+    generateVedio(_audio, is_short=False, is_riddle=True, is_motivation=False, _msg=x_fact)
+
+
+def yt_engine(_type_content):
+    if _type_content == "shorts":
+      make_content_shorts()
+      move_content()
+      print("Short generated.") 
+    else:
+      make_content_riddle()
+      move_content()
+      print("Riddle generated.") 
 
