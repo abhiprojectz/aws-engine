@@ -6,8 +6,6 @@ import subprocess
 from xdotool_commands import * 
 import subprocess
 import os
-import argparse
-from argparse import ArgumentError
 # from titles_db import titles 
 from titles_db_sandeep import titles 
 
@@ -16,45 +14,6 @@ from titles_db_sandeep import titles
 # from ytdeb.main import yt_engine
 from ytdeb_content.main import yt_engine
 
-
-def get_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "-l",
-        "--acc",
-        dest="acc",
-        type=str,
-        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
-        required=True,
-    )
-    parser.add_argument(
-        "-z",
-        "--slot",
-        dest="slot",
-        type=str,
-        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
-        required=True,
-    ) 
-    
-    parser.add_argument(
-        "-y",
-        "--target_url",
-        dest="target_url",
-        type=str,
-        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
-        required=True,
-    ) 
-
-    parser.add_argument(
-        "-a",
-        "--type_content",
-        dest="type_content",
-        type=str,
-        help="A json file that contains the cookies required to sign into YouTube in the target browser.",
-        required=True,
-    ) 
-    return parser
 
 
 def set_slot():
@@ -98,29 +57,13 @@ def setup_chrome_acc(_acc, _lor):
     sleep(3)
 
 
-def upload():
+def upload(acc, slot, type_content, target_url):
     ts = titles
-    # ts = ["#shorts #motivation #fun #meme #jee #knowledge #upsc #satisfying #amazing",
-    # "#satisfying #amazing #ias #ips #pcs #jee #knowledge #upsc #neet",
-    # "Subscribe & like #ias #ips #motivation #shorts #jee #knowledge #upsc #satisfying #amazing",
-    # "#knowledge #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc",
-    # "#motivational #satisfying #amazing #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc",
-    # "#shorts #motivation #knowledge #ias #ips #pcs #knowledge #upsc #satisfying #amazing",
-    # "Most motivational #shorts ever #motivation #iit #jee #ias #ips #pcs #upsc #satisfying #amazing",
-    # "#motivational #memes #shorts #ias #ips #funny #jee #knowledge #upsc #satisfying #amazing",
-    # "#inspiring #motivation #shorts #ias #ips #pcs #jee #knowledge #upsc #satisfying #amazing",
-    # "Please subscribe the channel #motivation #shorts #ias #knowledge #upsc #satisfying #amazing",
-    # "Don't for get to subscribe #motivational #motivation #ias #ips #pcs #shorts",
-    # "Most inspirational shorts ever #shorts #motivation",
-    # "Help us reach 1000 subscribers #motivational #ias #ips #pcs #shorts"
-    # ]
 
-    parser = get_arg_parser()
-    args = parser.parse_args()
-
-    _acc = args.acc
-    _slot = args.slot
-    _type_content = args.type_content
+    _acc = acc
+    _slot = slot
+    _type_content = type_content
+    _lor = target_url
 
     # # Setup right slot 
     # with open("/home/circleci/project/res.txt", 'r') as f:
@@ -128,7 +71,6 @@ def upload():
     # _slot_time = _slot.split("_")[0]
     # _acc = _slot.split("_")[1]
 
-    _lor = args.target_url
     # setting up chrome data folder
     setup_chrome_acc(_acc, _lor)
 
