@@ -149,9 +149,9 @@ def upload():
     setup_chrome_acc(_acc, _lor)
     # subprocess.run("sudo rm /root/*.mp4", shell=True)
     if _slot == "day":
-        ss = ["01:00", "03:00", "06:00", "09:00", "07:00", "08:00"]
+        # ss = ["01:00", "03:00", "06:00", "09:00", "07:00", "08:00"]
         # ss = ["05:00", "07:00"]
-        # ss = ["05:00"]
+        ss = ["05:00"]
     else: 
         ss = ["13:00", "15:00", "18:00", "21:00", "19:00", "20:00"]
 
@@ -175,27 +175,29 @@ def upload():
         yt_engine(_names, _urls, _time_ppt, _path)
         sleep(5)
 
+
+    scrot_()
     # Starting chrome...
-    start()
+    # start()
 
-    sleep(5)
-    # scrot_()
-    close_all_popups()
-    make_chrome_default()
-    # scrot_()
+    # sleep(5)
+    # # scrot_()
+    # close_all_popups()
+    # make_chrome_default()
+    # # scrot_()
     
-    for i in ss:
-        print(f"Uploading {ss.index(i) + 1} of shorts...")
+    # for i in ss:
+    #     print(f"Uploading {ss.index(i) + 1} of shorts...")
         
-        tss = titles[int(get_fact_num()) -4][0]
-        _title = tss + " #datamatic #trending"
+    #     tss = titles[int(get_fact_num()) -4][0]
+    #     _title = tss + " #datamatic #trending"
 
-        _time = i
-        _date = None
-        _item = ss.index(i)
+    #     _time = i
+    #     _date = None
+    #     _item = ss.index(i)
 
-        studio_main(_title, _time, _date, _item)
-        sleep(10)
+    #     studio_main(_title, _time, _date, _item)
+    #     sleep(10)
      
 def main():
     # subprocess.run("sudo su -", shell=True)
